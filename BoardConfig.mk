@@ -135,6 +135,9 @@ BOARD_VENDOR_RAMDISK_KERNEL_MODULES_LOAD := $(patsubst %,$(RAMDISK_MODULES_PATH)
 BOARD_VENDOR_RAMDISK_RECOVERY_KERNEL_MODULES_LOAD  := $(patsubst %,$(RAMDISK_MODULES_PATH)/%,$(shell cat $(RAMDISK_MODULES_PATH)/modules.load.recovery))
 BOARD_VENDOR_RAMDISK_KERNEL_MODULES_BLOCKLIST_FILE := $(RAMDISK_MODULES_PATH)/modules.blocklist
 
+BOARD_KERNEL_CMDLINE +=  init.is_dt2w_sensor=1
+BOARD_KERNEL_CMDLINE +=  init.is_st2w_sensor=1
+
 # MiuiCamera
 CAMERA_PACKAGE_NAME := com.android.camera
 
@@ -202,6 +205,10 @@ SYSTEM_EXT_PRIVATE_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy/private
 SOONG_CONFIG_NAMESPACES += XIAOMI_SENSORS
 SOONG_CONFIG_XIAOMI_SENSORS += UDFPS_PATH
 SOONG_CONFIG_XIAOMI_SENSORS_UDFPS_PATH := /sys/class/touch/touch_dev/fod_press_status,/sys/devices/platform/goodix_ts.0/gesture/fod_en
+SOONG_CONFIG_XIAOMI_SENSORS += DOUBLE_TAP_PATH
+SOONG_CONFIG_XIAOMI_SENSORS_DOUBLE_TAP_PATH := /sys/devices/platform/goodix_ts.0/gesture/double_tap_pressed
+SOONG_CONFIG_XIAOMI_SENSORS += SINGLE_TAP_PATH
+SOONG_CONFIG_XIAOMI_SENSORS_SINGLE_TAP_PATH := /sys/devices/platform/goodix_ts.0/gesture/single_tap_pressed
 
 # Vendor security patch
 VENDOR_SECURITY_PATCH := 2025-02-01
