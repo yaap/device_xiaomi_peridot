@@ -536,7 +536,7 @@ PRODUCT_COPY_FILES += \
 
 # Thermal
 PRODUCT_PACKAGES += \
-    android.hardware.thermal-V1-ndk.vendor \
+    android.hardware.thermal-service.qti \
     android.hardware.thermal@1.0.vendor \
     android.hardware.thermal@2.0.vendor
 
