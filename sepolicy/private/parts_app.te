@@ -56,6 +56,9 @@ allow parts_app {
 # Allow XiaomiParts to get settingsdebug.instant.packages prop
 get_prop(parts_app, settingslib_prop)
 
+# Allow XiaomiParts to read/write to sysfs_htsr;
+allow parts_app sysfs_htsr:file rw_file_perms;
+
 hal_client_domain(parts_app, hal_touchfeature_xiaomi)
 binder_call(parts_app, hal_touchfeature_xiaomi)
 allow parts_app hal_touchfeature_xiaomi_service:service_manager find;

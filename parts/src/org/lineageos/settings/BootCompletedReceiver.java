@@ -33,6 +33,7 @@ import org.lineageos.settings.doze.PocketService;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.thermal.ThermalTileService;
 import org.lineageos.settings.refreshrate.RefreshUtils;
+import org.lineageos.settings.touchsampling.TouchSamplingUtils;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
@@ -85,6 +86,9 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Start Pocket Mode Service
         PocketService.startService(context);
+
+        // Start HTSR
+        TouchSamplingUtils.restoreSamplingValue(context);
     }
 
     private void overrideHdrTypes(Context context) {
