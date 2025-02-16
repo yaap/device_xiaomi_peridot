@@ -83,6 +83,9 @@ on init
     chown system system /dev/cpuctl/general/tasks
     chmod 0644 /dev/cpuctl/general/tasks
 
+    # Initial uhid
+    chmod 0666 /dev/uhid
+
     # MIUI ADD: Performance_BoostFramework
     mkdir /dev/cpuctl/misc
     chown system system /dev/cpuctl/misc
@@ -202,12 +205,18 @@ on post-fs-data
     restorecon /dev/metis
     chmod 0666 /sys/module/metis/parameters/mi_viptask
     restorecon /sys/module/metis/parameters/mi_viptask
+    chmod 0666 /sys/module/metis/parameters/mi_viptask_balance
+    restorecon /sys/module/metis/parameters/mi_viptask_balance
+    chmod 0666 /sys/module/metis/parameters/metis_schlat_enable
+    restorecon /sys/module/metis/parameters/metis_schlat_enable
     chmod 0666 /sys/module/metis/parameters/mi_boost_duration
     restorecon /sys/module/metis/parameters/mi_boost_duration
     chmod 0666 /sys/class/thermal/thermal_message/boost
     restorecon /sys/class/thermal/thermal_message/boost
     chmod 0666 /sys/module/metis/parameters/vip_link_enable
     restorecon /sys/module/metis/parameters/vip_link_enable
+    chmod 0666 /sys/module/metis/parameters/vip_link_async_binder
+    restorecon /sys/module/metis/parameters/vip_link_async_binder
     chmod 0666 /sys/module/metis/parameters/mi_fboost_enable
     restorecon /sys/module/metis/parameters/mi_fboost_enable
     chmod 0666 /sys/module/metis/parameters/add_mi_viptask_enqueue_boost
@@ -224,6 +233,13 @@ on post-fs-data
     restorecon /sys/module/metis/parameters/del_mi_viptask_sched_lit_core
     chmod 0666 /sys/module/metis/parameters/is_break_enable
     restorecon /sys/module/metis/parameters/is_break_enable
+    chmod 0666 /sys/module/metis/parameters/cold_start_app_tgid
+    restorecon /sys/module/metis/parameters/cold_start_app_tgid
+    chmod 0666 /sys/module/metis/parameters/protect_cs
+    restorecon /sys/module/metis/parameters/protect_cs
+    chmod 0666 /sys/module/metis/parameters/trace_motion_event
+    restorecon /sys/module/metis/parameters/trace_motion_event
+    chown root system /sys/module/metis/parameters/trace_motion_event
 
     chmod 0666 /dev/metis_link
     restorecon /dev/metis_link
@@ -245,14 +261,30 @@ on post-fs-data
     chmod 0666 /sys/module/metis/parameters/force_cluster_sched_enable
     restorecon /sys/module/metis/parameters/force_cluster_sched_enable
 
+    chmod 0666 /sys/module/speed_touch/parameters/speed_touch_enable
+    restorecon /sys/module/speed_touch/parameters/speed_touch_enable
+    chown root system /sys/module/speed_touch/parameters/speed_touch_enable
+    chmod 0666 /sys/module/speed_touch/parameters/cur_layer_name
+    restorecon /sys/module/speed_touch/parameters/cur_layer_name
+    chown root system /sys/module/speed_touch/parameters/cur_layer_name
+    chmod 0666 /sys/module/speed_touch/parameters/sf_available_buffer_size
+    restorecon /sys/module/speed_touch/parameters/sf_available_buffer_size
+    chown root system /sys/module/speed_touch/parameters/sf_available_buffer_size
+    chmod 0666 /sys/module/speed_touch/parameters/track_vsync_signal
+    restorecon /sys/module/speed_touch/parameters/track_vsync_signal
+    chown root system /sys/module/speed_touch/parameters/track_vsync_signal
+    chmod 0666 /sys/module/speed_touch/parameters/vsync_period
+    restorecon /sys/module/speed_touch/parameters/vsync_period
+    chown root system /sys/module/speed_touch/parameters/vsync_period
+    chmod 0666 /sys/module/metis/parameters/speed_touch_enable
+    restorecon /sys/module/metis/parameters/speed_touch_enable
+    chown root system /sys/module/metis/parameters/speed_touch_enable
+
     mkdir /vendor/data/tombstones 0771 system system
     # Add wlan log output path
     mkdir /data/vendor/wlan_logs 0777 root shell
     mkdir /data/vendor/mac_addr 0770 system wifi
     mkdir /mnt/vendor/persist/wlan 0770 system wifi
-
-    # Poweroff offlinelog clean
-    setprop persist.sys.offlinelog.poweroff_charger_log clean
 
     chmod 0660 /dev/ir_spi
     chown system system /dev/ir_spi
@@ -341,6 +373,8 @@ on boot
     chmod 0664 /sys/class/mi_display/disp-DSI-0/mipi_rw
     chown system system /sys/class/mi_display/disp-DSI-0/panel_info
     chmod 0444 /sys/class/mi_display/disp-DSI-0/panel_info
+    chown system system /sys/class/mi_display/disp-DSI-0/panel_build_id
+    chmod 0444 /sys/class/mi_display/disp-DSI-0/panel_build_id
     chown system system /sys/class/mi_display/disp-DSI-0/wp_info
     chmod 0444 /sys/class/mi_display/disp-DSI-0/wp_info
     chown system system /sys/class/mi_display/disp-DSI-0/dynamic_fps
@@ -395,6 +429,29 @@ on boot
 
     # MIUI ADD: Memory_CLD
     # ufscld functions permission
+
+    # MIUI ADD: Power_PowerSaveModeV2
+    chown root system /sys/powersave/limit_buf
+    chmod 0664 /sys/powersave/limit_buf
+    chown root system /sys/powersave/boost
+    chmod 0664 /sys/powersave/boost
+    # END Power_PowerSaveModeV2
+
+    # MIUI ADD: Power_UnionPowerCore
+    chown root system /sys/unionpower/frame_jank
+    chown root system /sys/module/unionpower/parameters/FRAME_MONITOR_ENABLE
+    chown root system /sys/module/unionpower/parameters/JANK_LIMIT
+    chown root system /sys/module/unionpower/parameters/NICE_MORE_LIMIT
+    chown root system /sys/module/unionpower/parameters/VSYNC_GAP
+    chmod 0664 /sys/unionpower/frame_jank
+    chmod 0664 /sys/module/unionpower/parameters/FRAME_MONITOR_ENABLE
+    chmod 0664 /sys/module/unionpower/parameters/JANK_LIMIT
+    chmod 0664 /sys/module/unionpower/parameters/NICE_MORE_LIMIT
+    chmod 0664 /sys/module/unionpower/parameters/VSYNC_GAP
+    # END Power_UnionPowerCore
+
+    #MIUI ADD: Memory_CLD
+    #ufscld functions permission
     chown root system /sys/devices/platform/soc/1d84000.ufshc/ufscld/auto_hibern8_enable
     chown root system /sys/devices/platform/soc/1d84000.ufshc/ufscld/block_suspend
     chown root system /sys/devices/platform/soc/1d84000.ufshc/ufscld/cld_operation_status
@@ -420,16 +477,12 @@ on charger
     start vendor.power_off_alarm
     write /sys/kernel/cnss/charger_mode 1
     chown system system /sys/class/backlight/panel0-backlight/brightness
+    chown system system /sys/class/backlight/panel1-backlight/brightness
     write /sys/devices/system/cpu/qcom_lpm/parameters/sleep_disabled n
     write /sys/bus/platform/devices/1d84000.ufshc/clkscale_enable 1
     write /sys/bus/platform/devices/1d84000.ufshc/auto_hibern8 5000
     write /sys/bus/platform/devices/1d84000.ufshc/clkgate_enable 1
 
-#service vendor.lowi /vendor/bin/sscrpcd
-#   class core
-#   user system
-#   group system wakelock
-#   capabilities BLOCK_SUSPEND
 
 # PD-mapper
 service vendor.pd_mapper /vendor/bin/pd-mapper
