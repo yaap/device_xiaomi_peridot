@@ -1111,4 +1111,8 @@
         <item>0</item>
         <item>0</item>
     </integer-array>
+
+    <!-- Type of the udfps long press sensor. Empty if long press is not supported. -->
+    <string name="config_dozeUdfpsLongPressSensorType" translatable="false">org.yaap.sensor.udfps</string>
+
 </resources>
