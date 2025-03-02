@@ -4,6 +4,8 @@ on init
 on boot
     chown system system /sys/class/touch/touch_dev/fod_press_status
     chmod 0644 /sys/class/touch/touch_dev/fod_press_status
+    chown system system /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
+    chmod 0660 /sys/class/touch/touch_dev/fod_longpress_gesture_enabled
     chmod 0666 /dev/input/event1
 
     chown system system /dev/input/event2
@@ -57,3 +59,6 @@ on property:ro.vendor.sensors.xiaomi.single_tap=true
 
 on property:ro.vendor.sensors.xiaomi.double_tap=true
      write /sys/devices/platform/goodix_ts.0/gesture/double_tap_pressed 1
+
+on property:ro.vendor.sensors.xiaomi.udfps=true
+     write /sys/class/touch/touch_dev/fod_longpress_gesture_enabled 1
