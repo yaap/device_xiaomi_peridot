@@ -565,6 +565,9 @@ PRODUCT_PACKAGES += \
 
 # Telephony
 PRODUCT_PACKAGES += \
+    QtiTelephonyCompat
+
+PRODUCT_PACKAGES += \
     framework-permission-aidl-cpp.vendor
 
 PRODUCT_PACKAGES += \
