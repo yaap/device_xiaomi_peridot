@@ -102,6 +102,10 @@ function blob_fixup() {
 	    [ "$2" = "" ] && return 0
             "${PATCHELF}" --add-needed "libhidlbase_shim.so" "${2}"
             ;;
+        vendor/lib64/libqcrilNr.so|vendor/lib64/libril-db.so)
+            [ "$2" = "" ] && return 0
+            sed -i 's/persist\.vendor\.radio\.poweron_opt/persist.vendor.radio.poweron_ign/g' "${2}"
+            ;;     
         vendor/etc/media_codecs.xml|vendor/etc/media_codecs_cliffs_v0.xml|vendor/etc/media_codecs_performance_cliffs_v0.xml)
             [ "$2" = "" ] && return 0
             sed -i -E '/media_codecs_(google_audio|google_c2|google_telephony|vendor_audio)/d' "${2}"
