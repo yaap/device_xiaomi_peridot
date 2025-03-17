@@ -121,10 +121,10 @@ TARGET_RECOVERY_DEVICE_MODULES := libinit_peridot
 # Kernel modules
 DLKM_MODULES_PATH := $(PREBUILT_PATH)/modules/vendor_dlkm
 RAMDISK_MODULES_PATH := $(PREBUILT_PATH)/modules/vendor_boot
-SYSTEM_DLKM_MODULES_PATH := $(PREBUILT_PATH)/modules/system_dlkm/6.1.57-android14-11-g792270e27ab1-ab11683491
+SYSTEM_DLKM_MODULES_PATH := $(PREBUILT_PATH)/modules/system_dlkm/6.1.75-android14-11-g16c5f6cd5e9b-ab12268515
 
 PRODUCT_COPY_FILES += \
-    $(call find-copy-subdir-files,*,$(SYSTEM_DLKM_MODULES_PATH)/,$(TARGET_COPY_OUT_SYSTEM_DLKM)/lib/modules/6.1.57-android14-11-g792270e27ab1-ab11683491/)
+    $(call find-copy-subdir-files,*,$(SYSTEM_DLKM_MODULES_PATH)/,$(TARGET_COPY_OUT_SYSTEM_DLKM)/lib/modules/6.1.75-android14-11-g16c5f6cd5e9b-ab12268515/)
 
 BOARD_VENDOR_KERNEL_MODULES := $(wildcard $(DLKM_MODULES_PATH)/*.ko)
 BOARD_VENDOR_KERNEL_MODULES_LOAD := $(patsubst %,$(DLKM_MODULES_PATH)/%,$(shell cat $(DLKM_MODULES_PATH)/modules.load))
@@ -213,7 +213,7 @@ SOONG_CONFIG_XIAOMI_SENSORS += UDFPS_PATH
 SOONG_CONFIG_XIAOMI_SENSORS_UDFPS_PATH := /sys/class/touch/touch_dev/fod_press_status,/sys/class/touch/touch_dev/fod_longpress_gesture_enabled
 
 # Vendor security patch
-VENDOR_SECURITY_PATCH := 2024-11-01
+VENDOR_SECURITY_PATCH := 2025-02-01
 
 # Verified Boot
 BOARD_AVB_ENABLE := true
