@@ -128,12 +128,20 @@ PRODUCT_PACKAGES += \
     android.hardware.camera.device-V2-ndk.vendor \
     android.hardware.camera.metadata-V2-ndk.vendor \
     android.hardware.camera.provider-V2-ndk.vendor \
+    android.hardware.camera.provider@2.4-external \
+    android.hardware.camera.provider@2.4-legacy \
+    android.hardware.camera.provider@2.7.vendor \
+    android.hardware.camera.common@1.0.vendor \
     vendor.qti.hardware.camera.aon-V1-ndk.vendor \
+    vendor.qti.hardware.camera.aon@1.3.vendor \
+    vendor.qti.hardware.camera.device@1.0.vendor \
     vendor.qti.hardware.camera.offlinecamera-V1-ndk.vendor \
     vendor.qti.hardware.camera.postproc@1.0.vendor
 
 PRODUCT_PACKAGES += \
+    camera.device@1.0-impl \
     libcamera2ndk_vendor \
+    liblz4.vendor \
     libcamera_metadata.vendor \
     libexif.vendor \
     libutilscallstack.vendor \
