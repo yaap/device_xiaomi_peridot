@@ -43,7 +43,7 @@ vendor.audio.ultrasound.usync=100
 vendor.audio.useXiaomiSpatializer=true
 
 # Camera
-ro.camerax.extensions.enabled=false
+ro.camerax.extensions.enabled=true
 
 # DRM
 vendor.wv.oemcrypto.debug.enable_prov40=true
