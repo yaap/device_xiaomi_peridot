@@ -148,6 +148,8 @@ odm/etc/init/init.cirrus.rc
 odm/lib64/libaudioroute_ext.so
 odm/lib64/libawcal.so
 odm/lib64/libcrussp.so
+odm/lib64/libfsalgocal.so
+odm/lib64/libvoipspacespeech.so
 vendor/etc/audio_cloud_control_white_list.xml
 vendor/etc/models/acd/environment.eai
 vendor/etc/models/acd/event.eai
