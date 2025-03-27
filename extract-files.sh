@@ -99,9 +99,13 @@ function blob_fixup() {
             split --bytes=20M -d "${2}" "${2}".part
             ;;
         vendor/lib64/libqcodec2_core.so)
-	    [ "$2" = "" ] && return 0
+	        [ "$2" = "" ] && return 0
             "${PATCHELF}" --add-needed "libcodec2_shim.so" "${2}"
             ;;
+        vendor/bin/hw/vendor.dolby.media.c2@1.0-service | vendor/bin/hw/vendor.qti.media.c2@1.0-service | vendor/bin/hw/vendor.qti.media.c2audio@1.0-service)
+            [ "$2" = "" ] && return 0
+            "${PATCHELF}" --add-needed "libcodec2_hidl_shim.so" "${2}"
+            ;;    
         vendor/lib64/vendor.libdpmframework.so)
 	    [ "$2" = "" ] && return 0
             "${PATCHELF}" --add-needed "libhidlbase_shim.so" "${2}"
