@@ -55,6 +55,7 @@ PRODUCT_PACKAGES += \
 
 PRODUCT_PACKAGES += \
     audioadsprpcd \
+    audio.primary.default \
     audio.primary.pineapple \
     audio.bluetooth.default \
     audio.r_submix.default \
@@ -66,7 +67,9 @@ PRODUCT_PACKAGES += \
     libagm_pcm_plugin \
     libagmclient \
     libaudiochargerlistener \
+    libaudioroute.vendor \
     libbatterylistener \
+    libpalclient \
     libfmpal \
     libhfp_pal \
     libqcompostprocbundle \
