@@ -54,11 +54,5 @@ on post-fs-data
     mkdir /mnt/vendor/persist/goodix 0770 system system
     chown system system /data/vendor
 
-on property:ro.vendor.sensors.xiaomi.single_tap=true
-     write /sys/devices/platform/goodix_ts.0/gesture/single_tap_pressed 1
-
-on property:ro.vendor.sensors.xiaomi.double_tap=true
-     write /sys/devices/platform/goodix_ts.0/gesture/double_tap_pressed 1
-
 on property:ro.vendor.sensors.xiaomi.udfps=true
      write /sys/class/touch/touch_dev/fod_longpress_gesture_enabled 1
