@@ -33,9 +33,6 @@ import org.lineageos.settings.doze.PocketService;
 import org.lineageos.settings.thermal.ThermalUtils;
 import org.lineageos.settings.thermal.ThermalTileService;
 import org.lineageos.settings.refreshrate.RefreshUtils;
-import org.lineageos.settings.touchsampling.TouchSamplingUtils;
-import org.lineageos.settings.touchsampling.TouchSamplingService;
-import org.lineageos.settings.touchsampling.TouchSamplingTileService;
 
 public class BootCompletedReceiver extends BroadcastReceiver {
     private static final String TAG = "XiaomiParts";
@@ -63,9 +60,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
             // Override HDR types
             overrideHdrTypes(context);
 
-            // Restore touch sampling rate
-            TouchSamplingUtils.restoreSamplingValue(context);
-
         } catch (Exception e) {
             Log.e(TAG, "Error during locked boot completed processing", e);
         }
@@ -91,12 +85,6 @@ public class BootCompletedReceiver extends BroadcastReceiver {
 
         // Start Pocket Mode Service
         PocketService.startService(context);
-
-        // Start Touch Sampling Tile Service
-        context.startServiceAsUser(new Intent(context, TouchSamplingTileService.class), UserHandle.CURRENT);
-
-        // Start Touch Sampling Service
-        context.startServiceAsUser(new Intent(context, TouchSamplingService.class), UserHandle.CURRENT);
     }
 
     private void overrideHdrTypes(Context context) {
