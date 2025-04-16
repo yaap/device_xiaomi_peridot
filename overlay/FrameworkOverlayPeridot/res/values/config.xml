@@ -1117,7 +1117,4 @@
     <!-- Type of the tap sensor. Empty if tap is not supported. -->
     <string name="config_dozeTapSensorType" translatable="false">org.yaap.sensor.single_tap</string>
 
-    <!-- Default component for QR code scanner -->
-    <string name="config_defaultQrCodeComponent">com.xiaomi.scanner/com.xiaomi.scanner.app.ScanActivity</string>
-
 </resources>
